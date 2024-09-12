@@ -206,31 +206,31 @@ rules:
   #土拨鼠直连
 
   
-  - DOMAIN-SUFFIX,play.charontv.com,🚀 手动切换
+  - DOMAIN-SUFFIX,play.charontv.com,🌏 全球加速
   #卡戎
-  - DOMAIN-SUFFIX,film.hovervan.org,🚀 手动切换
+  - DOMAIN-SUFFIX,film.hovervan.org,🌏 全球加速
   #NMemby
-  - DOMAIN-SUFFIX,misty.cx,🚀 手动切换
+  - DOMAIN-SUFFIX,misty.cx,🌏 全球加速
   #Misty
-  - DOMAIN-SUFFIX,media.nijigem.by,🚀 手动切换
+  - DOMAIN-SUFFIX,media.nijigem.by,🌏 全球加速
   #二次元emby 
-  - DOMAIN-SUFFIX,stream_pilipili.misakaf.org,🚀 手动切换
-  - DOMAIN-SUFFIX,pilipili.club,🚀 手动切换
+  - DOMAIN-SUFFIX,stream_pilipili.misakaf.org,🌏 全球加速
+  - DOMAIN-SUFFIX,pilipili.club,🌏 全球加速
   #pilipili 
-  - DOMAIN-SUFFIX,gd.9521732.xyz,🚀 手动切换
+  - DOMAIN-SUFFIX,gd.9521732.xyz,🌏 全球加速
   #纸片人
-  - DOMAIN-SUFFIX,v.20120714.xyz,🚀 手动切换
+  - DOMAIN-SUFFIX,v.20120714.xyz,🌏 全球加速
   #Marmot_emby
-  - DOMAIN-SUFFIX,132.226.229.139,🚀 手动切换
+  - DOMAIN-SUFFIX,132.226.229.139,🌏 全球加速
   #开心服
-  - DOMAIN-SUFFIX,random.ouonet.org,🚀 手动切换
+  - DOMAIN-SUFFIX,random.ouonet.org,🌏 全球加速
   #OuO&JMS
-  - DOMAIN-SUFFIX,cf.jmsooo.com,🚀 手动切换
+  - DOMAIN-SUFFIX,cf.jmsooo.com,🌏 全球加速
   #JMS 
-  - DOMAIN-SUFFIX,pub1.term.wtf,🚀 手动切换 
+  - DOMAIN-SUFFIX,pub1.term.wtf,🌏 全球加速 
   #终点站备用路线
-  - DOMAIN-SUFFIX,192.210.216.166,🚀 手动切换 
-  #yomo 
+  - DOMAIN-SUFFIX,coemn.com,🌏 全球加速
+  #cc 
   - RULE-SET,Private,⚡ 直连,no-resolve
   - AND,((DOMAIN-SUFFIX,googlevideo.com), (NETWORK,UDP)),REJECT-DROP
   - AND,((DOMAIN,youtubei.googleapis.com), (NETWORK,UDP)),REJECT-DROP
