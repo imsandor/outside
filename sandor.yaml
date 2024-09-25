@@ -204,6 +204,11 @@ rules:
   #彩虹直连
   - DOMAIN-SUFFIX,20120714.xyz,⚡ 直连
   #土拨鼠直连
+  - DOMAIN-SUFFIX,1024.name,⚡ 直连
+  #西瓜直连
+  - DOMAIN-SUFFIX,9191001.xyz,⚡ 直连
+  #放映厅直连
+  
 
   
   - DOMAIN-SUFFIX,play.charontv.com,🌏 全球加速
