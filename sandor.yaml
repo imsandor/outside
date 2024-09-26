@@ -208,6 +208,10 @@ rules:
   #西瓜直连
   - DOMAIN-SUFFIX,9191001.xyz,⚡ 直连
   #放映厅直连
+  - DOMAIN-SUFFIX,apopcloud.live,⚡ 直连
+  #APOP直连
+
+ 
   
 
   
