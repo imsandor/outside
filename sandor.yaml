@@ -143,7 +143,7 @@ proxy-providers:
       # additional-prefix: "Alading|"
   jaycloud:
     <<: *a1
-    url: https://study.jaycloud11111.top/study?token=6b66c9d39366e4407181b8129dbb7c09
+    url: https://study.jaycloud11111.top/study?token=642490b8f171c0e23c268e0a6c9ed19d
     # override:
       # additional-prefix: "jaycloud|"        
 
