@@ -1,0 +1,263 @@
+mixed-port: 7890
+allow-lan: true
+mode: rule
+log-level: info
+ipv6: true
+unified-delay: false
+tcp-concurrent: true
+global-ua: clash-verge/v2.0.0
+external-controller: 127.0.0.1:9090
+external-ui: ui
+external-ui-url: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+
+find-process-mode: strict
+global-client-fingerprint: chrome
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+sniffer:
+  enable: true
+  parse-pure-ip: true
+  override-destination: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 5228, 8443]
+    QUIC:
+      ports: [443, 5228, 8443]
+  force-domain:
+    - +.v2ex.com
+    - +.netflix.com
+    - +.nflxvideo.net
+    - "alt1-mtalk.google.com"
+    - "alt2-mtalk.google.com"
+    - "alt3-mtalk.google.com"
+    - "alt4-mtalk.google.com"
+    - "alt5-mtalk.google.com"
+    - "alt6-mtalk.google.com"
+    - "alt7-mtalk.google.com"
+    - "alt8-mtalk.google.com"
+    - "mtalk.google.com"
+    - "dl.google.com"
+    - "dl.l.google.com"
+  skip-domain:
+    - +.bing.com
+    - +.copilot.microsoft.com
+    - +.apple.com
+    - +.cdn-telegram.org
+    - +.telegram.org
+    - +.telegram-cdn.org
+    - +.t.me
+
+geodata-mode: false
+geo-auto-update: true
+geo-update-interval: 240
+geox-url:
+  geoip: "https://mirror.ghproxy.com/https://github.com/DustinWin/geoip/blob/clash/geoip.dat"
+  geosite: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/blob/release/geosite.dat"
+  mmdb: "https://mirror.ghproxy.com/https://github.com/DustinWin/geoip/blob/clash/Country-lite.mmdb"
+  asn: "https://mirror.ghproxy.com/https://github.com/P3TERX/GeoLite.mmdb/blob/download/GeoLite2-ASN.mmdb"
+
+hosts:
+  #'cdn.jsdelivr.us': [104.17.54.11, 104.17.17.17]
+  #'mirror.ghproxy.com': [146.235.233.241, 129.151.136.35]
+  '+.mcdn.bilivideo.com': 0.0.0.0
+  '+.mcdn.bilivideo.cn': 0.0.0.0
+  '+.avlyun.com': 0.0.0.0
+
+dns:
+  enable: true
+  cache-algorithm: arc
+  ipv6: true
+  ipv6-timeout: 300
+  use-hosts: true
+  respect-rules: true
+  listen: :1053
+  default-nameserver:
+    - 180.184.1.1
+    - https://119.29.29.29/dns-query
+  enhanced-mode: fake-ip
+  fake-ip-range: 28.0.0.1/8
+  fake-ip-filter: # fakeip 过滤，配置不使用fake-ip的域名
+    - rule-set:fakeip
+    # FCM
+    - "alt1-mtalk.google.com"
+    - "alt2-mtalk.google.com"
+    - "alt3-mtalk.google.com"
+    - "alt4-mtalk.google.com"
+    - "alt5-mtalk.google.com"
+    - "alt6-mtalk.google.com"
+    - "alt7-mtalk.google.com"
+    - "alt8-mtalk.google.com"
+    - "mtalk.google.com"
+    - "dl.google.com"
+    - "dl.l.google.com"
+  nameserver:
+    - https://120.53.53.53/dns-query
+    - https://223.5.5.5/dns-query
+    - quic://pure.666.66a.net:853
+  proxy-server-nameserver:
+    - https://120.53.53.53/dns-query
+    - https://223.5.5.5/dns-query
+    - quic://pure.666.66a.net:853
+  nameserver-policy:
+    "+.lan": 10.0.0.1
+
+#========= 建立锚点 =========#
+
+# 策略组引用
+p:    &a1 {type: http,     exclude-filter: '^(?=.*(.))(.*((?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author)\b|(\d{4}-\d{2}-\d{2}|\d+G)))).*$', interval: 86400, health-check: {enable: true, url: 'https://cp.cloudflare.com', interval: 1800, timeout: 2000, lazy: true}}
+use:  &a2 {type: select,   lazy: true,  url: 'https://cp.cloudflare.com', interval: 600, timeout: 2000, max-failed-times: 2, include-all: true}
+auto: &a3 {type: url-test, lazy: true,  url: 'https://cp.cloudflare.com', interval: 600, tolerance: 200, timeout: 2000, max-failed-times: 2, include-all: true}
+
+c:    &a4 {type: http,     behavior: classical, interval: 864000}
+d:    &a5 {type: http,     behavior: domain,    interval: 864000}
+i:    &a6 {type: http,     behavior: ipcidr,    interval: 864000}
+
+ctxt: &t1 {type: http,     behavior: classical, format: text, interval: 864000}
+dtxt: &t2 {type: http,     behavior: domain,    format: text, interval: 864000}
+itxt: &t3 {type: http,     behavior: ipcidr,    format: text, interval: 864000}
+
+dmrs: &m1 {type: http,     behavior: domain,    format: mrs, interval: 864000}
+imrs: &m2 {type: http,     behavior: ipcidr,    format: mrs, interval: 864000}
+
+sl:   &l1 {type: load-balance, url: 'https://cp.cloudflare.com', interval: 600, strategy: consistent-hashing, include-all: true}
+lx:   &l2 {type: load-balance, url: 'https://cp.cloudflare.com', interval: 600, strategy: round-robin, include-all: true}
+bc:   &l3 {type: load-balance, url: 'https://cp.cloudflare.com', interval: 600, strategy: sticky-sessions, include-all: true}
+#
+
+proxy-providers:
+ OKGG:
+    <<: *a1
+    url: https://v1.mk/OuCU5Qf
+    # override:
+      # additional-prefix: "OKGG|"
+ 
+
+
+proxies:
+  - name: "⚡ 直连"
+    type: direct
+    udp: true
+  
+proxy-groups:
+  - {name: 🌏 全球加速, type: select, proxies: [♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇨🇳 台湾节点, 🇺🇲 美国节点, 🇸🇬 狮城节点,⚡ 直连], icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Global.png}
+  - {name: 🚀 手动切换, <<: *a2, icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png}
+  - {name: 📺 哔哩哔哩, type: select, proxies: [⚡ 直连, 🌏 全球加速, 🇭🇰 香港节点, 🇨🇳 台湾节点], icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/bilibili.png}
+  - {name: 🇭🇰 香港节点, <<: *a3, filter: "港|HK|(?i)Hong", icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png}
+  - {name: 🇯🇵 日本节点, <<:  *a3, filter: "日本|东京|大阪|埼玉|JP|(?i)Japan", icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png}
+  - {name: 🇸🇬 狮城节点, <<: *a3, filter: "新加坡|坡|狮城|SG|(?i)Singapore", icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png}
+  - {name: 🇺🇲 美国节点, <<: *a3, filter: "美|凤凰城|阿什本|费利蒙|加州|纽约|拉斯维加斯|洛杉矶|圣何塞|西雅图|芝加哥|US|(?i)States|American", icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png} 
+  - {name: 🇨🇳 台湾节点, <<: *a3, filter: "台|湾|新北|TW|(?i)Taiwan|(?i)Tai wan", icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Taiwan.png}
+  - {name: 📥 微软云盘, type: select, proxies: [🌏 全球加速, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇳 台湾节点, ⚡ 直连], icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/OneDrive.png}
+  - {name: 🍎 苹果服务, type: select, proxies: [🌏 全球加速, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇳 台湾节点, ⚡ 直连], icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png}
+  - {name: 🪁 微软服务, type: select, proxies: [🌏 全球加速, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇳 台湾节点, ⚡ 直连], icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Copilot.png}
+  - {name: 🕹️ 游戏平台, type: select, proxies: [🌏 全球加速, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇳 台湾节点, ⚡ 直连], icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Steam.png}
+  - {name: 🎬 国际媒体, type: select, proxies: [🌏 全球加速, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🇨🇳 台湾节点], icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Disney+_1.png}
+  - {name: ♻️ 自动选择, <<: *a3, filter: "港|HK|(?i)Hong|日本|东京|大阪|埼玉|JP|(?i)Japan|新加坡|坡|狮城|SG|(?i)Singapore", icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Speedtest.png}
+  - {name: ⛔ 广告拦截, type: select, proxies: [REJECT-DROP, 🌏 全球加速, ⚡ 直连], icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Reject.png}
+  - {name: 🐟 兜底分流, type: select, proxies: [🌏 全球加速, ⚡ 直连], icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Final.png}
+
+rule-providers:
+  fakeip:    {<<: *m1, url: https://mirror.ghproxy.com/https://github.com/DustinWin/ruleset_geodata/releases/download/clash-ruleset/fakeip-filter.mrs,   path: ./ruleset/fakeip-filter.mrs}
+  Stream:    {<<: *a4, url: https://mirror.ghproxy.com/https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/GlobalMedia/GlobalMedia_Classical_No_Resolve.yaml,  path: ./ruleset/Stream.yaml}
+  AD:        {<<: *a5, url: https://mirror.ghproxy.com/https://github.com/TG-Twilight/AWAvenue-Ads-Rule/blob/main/Filters/AWAvenue-Ads-Rule-Clash.yaml,   path: ./ruleset/AD.yaml}
+  BanSogou:  {<<: *t1, url: https://ruleset.skk.moe/Clash/non_ip/sogouinput.txt,   path: ./ruleset/BanSogou.txt}
+  Private:   {<<: *m2, url: https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/private.mrs,   path: ./ruleset/Private.mrs}
+  CN_ip:     {<<: *m2, url: https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/cn.mrs,   path: ./ruleset/CN_ip.mrs}
+  CN_domain: {<<: *m1, url: https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cn.mrs,   path: ./ruleset/CN_domain.mrs}
+
+rules:
+  - DOMAIN-SUFFIX,pub1cf.emby.wtf,⚡ 直连
+  - DOMAIN-SUFFIX,pub2cf.emby.wtf,⚡ 直连
+  - DOMAIN-SUFFIX,pub3cf.emby.wtf,⚡ 直连
+  #终点站直连路线
+  - DOMAIN-SUFFIX,vip2.jellyfin.asia,⚡ 直连
+  #水母直连路线
+  - DOMAIN-SUFFIX,pilifun.top,⚡ 直连
+  - DOMAIN-SUFFIX,emby-kyoma.pilipiliultra.com,⚡ 直连
+  - DOMAIN-SUFFIX,css.pilipili.club,⚡ 直连
+  #pilipili直连路线
+  - DOMAIN-SUFFIX,viclub.top,⚡ 直连
+  #大V直连路线
+  - DOMAIN-SUFFIX,lyrebirdemby.com,⚡ 直连
+  #琴鸟直连
+  - DOMAIN-SUFFIX,811861.xyz,⚡ 直连
+  #AWA直连
+  - DOMAIN-SUFFIX,sfcj.org,⚡ 直连
+   #非越直连
+  - DOMAIN-SUFFIX,7777777.buzz,⚡ 直连
+  - DOMAIN-SUFFIX,581658.best,⚡ 直连
+  #彩虹直连
+  - DOMAIN-SUFFIX,20120714.xyz,⚡ 直连
+  #土拨鼠直连
+  - DOMAIN-SUFFIX,1024.name,⚡ 直连
+  #西瓜直连
+  - DOMAIN-SUFFIX,9191001.xyz,⚡ 直连
+  #放映厅直连
+  - DOMAIN-SUFFIX,apopcloud.live,⚡ 直连
+  #APOP直连
+
+ 
+  
+
+  
+  - DOMAIN-SUFFIX,play.charontv.com,🌏 全球加速
+  #卡戎
+  - DOMAIN-SUFFIX,film.hovervan.org,🌏 全球加速
+  #NMemby
+  - DOMAIN-SUFFIX,misty.cx,🌏 全球加速
+  #Misty
+  - DOMAIN-SUFFIX,media.nijigem.by,🌏 全球加速
+  #二次元emby 
+  - DOMAIN-SUFFIX,stream_pilipili.misakaf.org,🌏 全球加速
+  - DOMAIN-SUFFIX,pilipili.club,🌏 全球加速
+  #pilipili 
+  - DOMAIN-SUFFIX,gd.9521732.xyz,🌏 全球加速
+  #纸片人
+  - DOMAIN-SUFFIX,v.20120714.xyz,🌏 全球加速
+  #Marmot_emby
+  - DOMAIN-SUFFIX,132.226.229.139,🌏 全球加速
+  #开心服
+  - DOMAIN-SUFFIX,random.ouonet.org,🌏 全球加速
+  #OuO&JMS
+  - DOMAIN-SUFFIX,cf.jmsooo.com,🌏 全球加速
+  #JMS 
+  - DOMAIN-SUFFIX,pub1.term.wtf,🌏 全球加速 
+  #终点站备用路线
+  - DOMAIN-SUFFIX,coemn.com,🌏 全球加速
+  #cc 
+  - RULE-SET,Private,⚡ 直连,no-resolve
+  - AND,((DOMAIN-SUFFIX,googlevideo.com), (NETWORK,UDP)),REJECT-DROP
+  - AND,((DOMAIN,youtubei.googleapis.com), (NETWORK,UDP)),REJECT-DROP
+  #- AND,((PROCESS-NAME,com.tencent.mm),(NETWORK,UDP)),REJECT-DROP
+  #- AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(GEOSITE,geolocation-!cn),REJECT
+  - DOMAIN-SUFFIX,sentry.io,REJECT-DROP
+  - GEOSITE,bahamut,🇨🇳 台湾节点
+  - GEOSITE,hamivideo,🇨🇳 台湾节点
+  - GEOSITE,category-games@cn,⚡ 直连
+  - RULE-SET,AD,⛔ 广告拦截
+  #- RULE-SET,BanSogou,⛔ 广告拦截 # 搜狗输入法上传信息
+  - RULE-SET,Stream,🎬 国际媒体
+  - GEOSITE,BiliBili,📺 哔哩哔哩
+  - GEOSITE,Telegram,🌏 全球加速
+  - GEOSITE,Twitter,🌏 全球加速
+  - GEOSITE,OneDrive,📥 微软云盘
+  - GEOSITE,github,🌏 全球加速
+  - GEOSITE,Microsoft,🪁 微软服务
+  - GEOSITE,Apple,🍎 苹果服务
+  - GEOSITE,category-games,🕹️ 游戏平台
+  - GEOSITE,Google,🌏 全球加速
+  - GEOSITE,geolocation-!cn,🌏 全球加速
+  - RULE-SET,CN_domain,⚡ 直连
+  - GEOIP,apple,🍎 苹果服务
+  - GEOIP,google,🌏 全球加速
+  - GEOIP,telegram,🌏 全球加速
+  - GEOIP,twitter,🌏 全球加速
+  - GEOIP,bilibili,📺 哔哩哔哩
+  - RULE-SET,CN_ip,⚡ 直连
+  - MATCH,🐟 兜底分流
