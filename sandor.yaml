@@ -136,6 +136,11 @@ proxy-providers:
     url: https://dadada.acaisbest.com/api/v1/client/subscribe?token=7946ca4a658b61cf66274d7aca92b358
     # override:
       # additional-prefix: "ACA|"
+  okgg:
+    <<: *a1
+    url: https://v1.mk/OuCU5Qf
+    # override:
+      # additional-prefix: "okgg|"
          
 
 
