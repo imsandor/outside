@@ -136,16 +136,7 @@ proxy-providers:
     url: https://dadada.acaisbest.com/api/v1/client/subscribe?token=7946ca4a658b61cf66274d7aca92b358
     # override:
       # additional-prefix: "ACA|"
-  Alading:
-    <<: *a1
-    url: https://music.easygourl.xyz/link/PQ58fVVBsaHYE6TEf2bqRqzMyduXVgDP?config=all
-    # override:
-      # additional-prefix: "Alading|"
-  jaycloud:
-    <<: *a1
-    url: https://study.jaycloud11111.top/study?token=642490b8f171c0e23c268e0a6c9ed19d
-    # override:
-      # additional-prefix: "jaycloud|"        
+         
 
 
 proxies:
