@@ -176,7 +176,7 @@ rules:
   - DOMAIN-SUFFIX,pub2cf.emby.wtf,⚡ 直连
   - DOMAIN-SUFFIX,pub3cf.emby.wtf,⚡ 直连
   #终点站直连路线
-  - DOMAIN-SUFFIX,vip2.jellyfin.asia,⚡ 直连
+  - DOMAIN-SUFFIX,jellyfin.asia,⚡ 直连
   #水母直连路线
   - DOMAIN-SUFFIX,pilifun.top,⚡ 直连
   - DOMAIN-SUFFIX,emby-kyoma.pilipiliultra.com,⚡ 直连
