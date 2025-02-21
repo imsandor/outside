@@ -1,46 +1,46 @@
-  # 域名后缀匹配
-  
-  DOMAIN-SUFFIX,emby.my
-  # 鹅服
-  DOMAIN-SUFFIX,pppp.us.kg
-  # Nanflix
-  DOMAIN-SUFFIX,nanflix.net
-  # 西瓜
-  DOMAIN-SUFFIX,1024.name
-  # 大V
-  DOMAIN-SUFFIX,viclub.top
-  DOMAIN-SUFFIX,306699.xyz
-  # July
-  DOMAIN-SUFFIX,alist7.eu.org
-  DOMAIN-SUFFIX,vfing.de
-  # 琴鸟
-  DOMAIN-SUFFIX,lyrebirdemby.com
-  # 惊蛰
-  DOMAIN-SUFFIX,jingzhe.pro
-  # SaturDay.Lite
-  DOMAIN-SUFFIX,saturday.video
-  # 非越
-  DOMAIN-SUFFIX,sfcj.org
-  # 叔服
-  DOMAIN-SUFFIX,mcjoker.xyz
-  # CCemby
-  DOMAIN-SUFFIX,coemn.com
-  # 起点站
-  DOMAIN-SUFFIX,28.al
-  # 彩虹
-  DOMAIN-SUFFIX,7777777.buzz
-  DOMAIN-SUFFIX,581658.best
-  # Aurora
-  DOMAIN-SUFFIX,auroramedia.vip
-  # 探花
-  DOMAIN-SUFFIX,tanhuatv.site
-  # Paul
-  DOMAIN-SUFFIX,imetyou.top
-  # 牢大
-  DOMAIN-SUFFIX,mius.uk
-  # 放映厅
-  DOMAIN-SUFFIX,9191001.xyz
-  # NYA media
-  DOMAIN-SUFFIX,bangumi.ca
-  # DPX
-  DOMAIN-SUFFIX,69yun69.com
+# 域名后缀匹配
+
+DOMAIN-SUFFIX,emby.my
+# 鹅服
+DOMAIN-SUFFIX,pppp.us.kg
+# Nanflix
+DOMAIN-SUFFIX,nanflix.net
+# 西瓜
+DOMAIN-SUFFIX,1024.name
+# 大V
+DOMAIN-SUFFIX,viclub.top
+DOMAIN-SUFFIX,306699.xyz
+# July
+DOMAIN-SUFFIX,alist7.eu.org
+DOMAIN-SUFFIX,vfing.de
+# 琴鸟
+DOMAIN-SUFFIX,lyrebirdemby.com
+# 惊蛰
+DOMAIN-SUFFIX,jingzhe.pro
+# SaturDay.Lite
+DOMAIN-SUFFIX,saturday.video
+# 非越
+DOMAIN-SUFFIX,sfcj.org
+# 叔服
+DOMAIN-SUFFIX,mcjoker.xyz
+# CCemby
+DOMAIN-SUFFIX,coemn.com
+# 起点站
+DOMAIN-SUFFIX,28.al
+# 彩虹
+DOMAIN-SUFFIX,7777777.buzz
+DOMAIN-SUFFIX,581658.best
+# Aurora
+DOMAIN-SUFFIX,auroramedia.vip
+# 探花
+DOMAIN-SUFFIX,tanhuatv.site
+# Paul
+DOMAIN-SUFFIX,imetyou.top
+# 牢大
+DOMAIN-SUFFIX,mius.uk
+# 放映厅
+DOMAIN-SUFFIX,9191001.xyz
+# NYA media
+DOMAIN-SUFFIX,bangumi.ca
+# DPX
+DOMAIN-SUFFIX,69yun69.com
