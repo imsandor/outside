@@ -1,9 +1,9 @@
-  # 域名后缀匹配
-  # Charon TV
-  DOMAIN-SUFFIX,play.charontv.com
-  # Misty
-  DOMAIN-SUFFIX,misty.cx
-  # Emby WTF
-  DOMAIN-SUFFIX,emby.wtf
-  # Emby Plus
-  DOMAIN-SUFFIX,embyplus.org
+# 域名后缀匹配
+# Charon TV
+DOMAIN-SUFFIX,play.charontv.com
+# Misty
+DOMAIN-SUFFIX,misty.cx
+# Emby WTF
+DOMAIN-SUFFIX,emby.wtf
+# Emby Plus
+DOMAIN-SUFFIX,embyplus.org
